@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# lundy.work — DevOps Portfolio
 
-## Getting Started
+Personal portfolio of **Seab Lundy**, DevOps Engineer in Phnom Penh, Cambodia. A single-page, DevOps-themed site with an interactive terminal, light/dark mode, and content driven entirely from one data file.
 
-First, run the development server:
+**Live:** [www.lundy.work](https://www.lundy.work) · **Contact:** [Telegram](https://t.me/seablundy) · [lundyseab@gmail.com](mailto:lundyseab@gmail.com)
+
+## Features
+
+- **Interactive terminal** in the hero — visitors can run `help`, `whoami`, `skills`, `experience`, `projects`, `education`, `contact`, `clear` (and a hidden `sudo hire lundy`), with arrow-key command history
+- **DevOps color scheme** — blue/teal on clean slate in light mode, cyan/green on deep navy in dark mode, with a persisted theme toggle
+- **Animated background** — official DevOps tool logos (Kubernetes, Docker, Jenkins, ArgoCD, Helm, Istio, Vault, Grafana, …) drifting in the hero and contact sections only, positioned so they never sit behind text, disabled for `prefers-reduced-motion`
+- **Fully responsive** — hamburger navigation and tuned decoration on mobile
+- **Privacy-aware** — the public site exposes email and social links only
+- **Static output** — `next build` prerenders everything; hostable on any static host, CDN, or a container
+
+## Tech stack
+
+| Layer | Choice |
+|---|---|
+| Framework | Next.js 16 (App Router, React 19, Turbopack) |
+| Styling | Tailwind CSS v4 |
+| UI components | shadcn/ui (radix) |
+| Theming | next-themes |
+| Icons | lucide-react + @icons-pack/react-simple-icons |
+| Fonts | Geist + Geist Mono via `next/font` |
+| Package manager | pnpm |
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm dev        # http://localhost:3000
+pnpm build      # production build (static)
+pnpm start      # serve the production build
+pnpm lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+app/
+  layout.tsx              # fonts, metadata, ThemeProvider
+  page.tsx                # composes all sections
+  globals.css             # shadcn tokens, DevOps palette, float animation
+components/
+  site-header.tsx         # sticky nav + theme toggle
+  mobile-nav.tsx          # hamburger sheet menu (mobile)
+  interactive-terminal.tsx# the hero terminal and its commands
+  devops-background.tsx   # floating tool-logo layers
+  profile-photo.tsx       # photo with initials fallback
+  section.tsx             # shared section shell ($-prefixed headings)
+  sections/               # hero, skills, experience, projects, education, contact
+  ui/                     # shadcn components
+lib/
+  data.ts                 # ALL site content (profile, skills, jobs, projects…)
+public/
+  profile/seablundy.jpg   # profile photo
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Editing content
 
-## Learn More
+Everything the site displays — name, summary, skills, jobs, projects, education, links — lives in **`lib/data.ts`**. Edit that one file; no component changes needed. The interactive terminal reads from the same data, so its command output stays in sync automatically.
 
-To learn more about Next.js, take a look at the following resources:
+To change the color scheme, edit the CSS variables in `app/globals.css` (`:root` for light, `.dark` for dark).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The build is fully static, so it runs anywhere:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Vercel** — zero-config: import the repo and deploy
+- **Containerized** — build the image, serve with `next start` (or export and serve with nginx), and deploy to Kubernetes with your CI/CD of choice — Jenkins + ArgoCD keeps it on-brand
