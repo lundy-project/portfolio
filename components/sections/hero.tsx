@@ -1,5 +1,6 @@
 import { MapPin, Send } from "lucide-react";
 
+import { InteractiveTerminal } from "@/components/interactive-terminal";
 import { ProfilePhoto } from "@/components/profile-photo";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -48,47 +49,11 @@ export function Hero() {
               <a href={profile.telegram} target="_blank" rel="noreferrer">
                 <Send className="size-4" /> Contact Me
               </a>
-            </Button>          </div>
+            </Button>
+          </div>
         </div>
 
-        <div className="overflow-hidden rounded-xl border border-border/60 bg-terminal shadow-xl">
-          <div className="flex items-center gap-1.5 border-b border-white/10 px-4 py-3">
-            <span className="size-3 rounded-full bg-[#ff5f57]" />
-            <span className="size-3 rounded-full bg-[#febc2e]" />
-            <span className="size-3 rounded-full bg-[#28c840]" />
-            <span className="ml-2 font-mono text-xs text-white/50">
-              lundy@k3s-cluster: ~
-            </span>
-          </div>
-          <div className="space-y-2 p-4 font-mono text-xs leading-relaxed text-terminal-foreground sm:text-sm">
-            <p>
-              <span className="text-white/50">$</span> kubectl get engineer lundy -o yaml
-            </p>
-            <p className="text-white/80">apiVersion: career/v1</p>
-            <p className="text-white/80">kind: DevOpsEngineer</p>
-            <p className="text-white/80">spec:</p>
-            <p className="pl-4 text-white/80">
-              platform: <span className="text-terminal-foreground">[k8s, k3s, docker]</span>
-            </p>
-            <p className="pl-4 text-white/80">
-              cicd: <span className="text-terminal-foreground">[jenkins, argocd, github-actions]</span>
-            </p>
-            <p className="pl-4 text-white/80">
-              security: <span className="text-terminal-foreground">[vault, trivy, sonarqube]</span>
-            </p>
-            <p className="text-white/80">status:</p>
-            <p className="pl-4 text-white/80">
-              phase: <span className="text-success">Running</span>
-            </p>
-            <p className="pl-4 text-white/80">
-              ready: <span className="text-success">true</span>
-            </p>
-            <p>
-              <span className="text-white/50">$</span>
-              <span className="ml-1 inline-block h-4 w-2 animate-pulse bg-terminal-foreground align-middle" />
-            </p>
-          </div>
-        </div>
+        <InteractiveTerminal />
       </div>
     </section>
   );
