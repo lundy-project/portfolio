@@ -55,6 +55,10 @@ lib/
   data.ts                 # ALL site content (profile, skills, jobs, projects…)
 public/
   profile/seablundy.jpg   # profile photo
+charts/
+  portfolio/              # Helm chart (Deployment/Service/HPA + opt-in Istio & cert-manager)
+Dockerfile                # multi-stage image (pnpm → standalone → alpine runtime)
+docker-compose.yml        # one-command local/production run
 ```
 
 ## Editing content
@@ -65,7 +69,62 @@ To change the color scheme, edit the CSS variables in `app/globals.css` (`:root`
 
 ## Deployment
 
-The build is fully static, so it runs anywhere:
+The app builds to a fully static, self-contained bundle (`output: "standalone"`), so pick whichever option fits:
 
-- **Vercel** — zero-config: import the repo and deploy
-- **Containerized** — build the image, serve with `next start` (or export and serve with nginx), and deploy to Kubernetes with your CI/CD of choice — Jenkins + ArgoCD keeps it on-brand
+### Option 1 — Vercel (fastest)
+
+Zero-config: import the repo on [vercel.com](https://vercel.com), deploy, point the `lundy.work` DNS at it.
+
+### Option 2 — Docker
+
+Multi-stage `Dockerfile` (pnpm install → standalone build → slim `node:22-alpine` runtime, non-root user, healthcheck):
+
+```bash
+docker build -t lundyseab/devops-portfolio:latest .
+docker run -d -p 3000:3000 lundyseab/devops-portfolio:latest
+```
+
+### Option 3 — Docker Compose
+
+```bash
+docker compose up -d --build   # http://localhost:3000
+docker compose ps              # shows "healthy" once the healthcheck passes
+```
+
+### Option 4 — Kubernetes via Helm
+
+A chart lives in [`charts/portfolio`](charts/portfolio) — Deployment (2 replicas, probes, restricted securityContext), Service, optional HPA, and opt-in Istio + cert-manager resources.
+
+```bash
+# push the image somewhere the cluster can pull from
+docker build -t lundyseab/devops-portfolio:0.1.0 . && docker push lundyseab/devops-portfolio:0.1.0
+
+# install (Istio and cert-manager are OFF by default)
+helm upgrade --install portfolio ./charts/portfolio -n portfolio --create-namespace \
+  --set image.tag=0.1.0
+
+# reach it without a gateway
+kubectl port-forward -n portfolio svc/portfolio-portfolio 8080:80
+# ...or expose a node port
+helm upgrade portfolio ./charts/portfolio -n portfolio --reuse-values --set service.type=NodePort
+```
+
+When Istio and cert-manager are installed on the cluster, enable both together in `values.yaml` and upgrade — this adds an Istio `Gateway` (HTTP→HTTPS redirect + TLS), a `VirtualService` for `lundy.work` / `www.lundy.work`, and a cert-manager `Certificate` in the ingress gateway's namespace:
+
+```yaml
+istio:
+  enabled: true
+certManager:
+  enabled: true          # requires an existing ClusterIssuer (default: letsencrypt-prod)
+```
+
+```bash
+helm upgrade portfolio ./charts/portfolio -n portfolio
+kubectl get certificate -n istio-system    # wait for READY=True, then point DNS at the gateway
+```
+
+Key values to review before a real deploy: `image.repository`, `istio.host` / `extraHosts`, `istio.gateway.selector`/`namespace`, and `certManager.issuerName`.
+
+### CI/CD
+
+The intended pipeline is the one this portfolio describes: Jenkins (or GitHub Actions) builds and pushes the image and bumps the chart's `image.tag`, ArgoCD syncs the chart to the K3s cluster.

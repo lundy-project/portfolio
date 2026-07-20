@@ -1,0 +1,61 @@
+replicaCount: 2
+
+image:
+  repository: lundyseab/devops-portfolio
+  tag: latest
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+
+service:
+  # ClusterIP behind Istio; switch to NodePort for direct access while Istio is off.
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+  # Only used when type is NodePort. Leave 0 to let Kubernetes pick one.
+  nodePort: 0
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+  limits:
+    cpu: 250m
+    memory: 256Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 4
+  targetCPUUtilizationPercentage: 80
+
+istio:
+  # Not installed yet — flip to true together with certManager.enabled when
+  # Istio and cert-manager are ready, then `helm upgrade`.
+  enabled: false
+  host: lundy.work
+  # Extra hosts routed to the same app (e.g. the www variant).
+  extraHosts:
+    - www.lundy.work
+  gateway:
+    # Create a dedicated Gateway for this app. Set create: false and fill
+    # existingGateway to attach the VirtualService to a shared gateway instead
+    # (format: <namespace>/<gateway-name>).
+    create: true
+    existingGateway: ""
+    # Namespace where the istio ingress gateway workload runs — the Gateway,
+    # the Certificate, and its TLS secret must all live there.
+    namespace: istio-system
+    # Label selector of the ingress gateway workload.
+    selector:
+      istio: ingressgateway
+  tls:
+    secretName: portfolio-lundy-work-tls
+
+certManager:
+  # Enable together with istio.enabled — the Gateway references the TLS secret
+  # this Certificate creates.
+  enabled: false
+  # ClusterIssuer to use (e.g. letsencrypt-prod). Must already exist.
+  issuerName: letsencrypt-prod
+  issuerKind: ClusterIssuer

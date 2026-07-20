@@ -1,0 +1,20 @@
+{{- if and .Values.istio.enabled .Values.certManager.enabled }}
+# The Certificate (and the secret cert-manager writes) must live in the istio
+# ingress gateway's namespace — the gateway pod mounts the TLS secret, not the app.
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ include "portfolio.fullname" . }}-tls
+  namespace: {{ .Values.istio.gateway.namespace }}
+  labels:
+    {{- include "portfolio.labels" . | nindent 4 }}
+spec:
+  secretName: {{ .Values.istio.tls.secretName }}
+  issuerRef:
+    name: {{ .Values.certManager.issuerName }}
+    kind: {{ .Values.certManager.issuerKind }}
+  dnsNames:
+    {{- range (include "portfolio.hosts" . | fromJsonArray) }}
+    - {{ . | quote }}
+    {{- end }}
+{{- end }}

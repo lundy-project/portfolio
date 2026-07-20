@@ -1,0 +1,21 @@
+{{- if .Values.istio.enabled }}
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: {{ include "portfolio.fullname" . }}
+  labels:
+    {{- include "portfolio.labels" . | nindent 4 }}
+spec:
+  hosts:
+    {{- range (include "portfolio.hosts" . | fromJsonArray) }}
+    - {{ . | quote }}
+    {{- end }}
+  gateways:
+    - {{ include "portfolio.gatewayRef" . }}
+  http:
+    - route:
+        - destination:
+            host: {{ include "portfolio.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
+            port:
+              number: {{ .Values.service.port }}
+{{- end }}

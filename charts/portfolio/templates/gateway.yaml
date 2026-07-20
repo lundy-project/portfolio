@@ -1,0 +1,34 @@
+{{- if and .Values.istio.enabled .Values.istio.gateway.create }}
+apiVersion: networking.istio.io/v1
+kind: Gateway
+metadata:
+  name: {{ include "portfolio.fullname" . }}
+  namespace: {{ .Values.istio.gateway.namespace }}
+  labels:
+    {{- include "portfolio.labels" . | nindent 4 }}
+spec:
+  selector:
+    {{- toYaml .Values.istio.gateway.selector | nindent 4 }}
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        {{- range (include "portfolio.hosts" . | fromJsonArray) }}
+        - {{ . | quote }}
+        {{- end }}
+      tls:
+        httpsRedirect: true
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        {{- range (include "portfolio.hosts" . | fromJsonArray) }}
+        - {{ . | quote }}
+        {{- end }}
+      tls:
+        mode: SIMPLE
+        credentialName: {{ .Values.istio.tls.secretName }}
+{{- end }}
