@@ -7,6 +7,7 @@ import {
   SiIstio,
   SiJenkins,
   SiKubernetes,
+  SiLinux,
   SiPrometheus,
   SiVault,
 } from "@icons-pack/react-simple-icons";
@@ -17,66 +18,57 @@ type FloatingIcon = {
   style: React.CSSProperties;
 };
 
-const floatingIcons: FloatingIcon[] = [
-  {
-    Icon: SiKubernetes,
-    className: "left-[6%] top-[12%] size-14 sm:size-20",
-    style: { animationDuration: "14s" },
-  },
-  {
-    Icon: SiDocker,
-    className: "left-[16%] top-[68%] size-12 sm:size-16",
-    style: { animationDuration: "11s", animationDelay: "-3s" },
-  },
-  {
-    Icon: SiJenkins,
-    className: "left-[36%] top-[22%] size-10 sm:size-14",
-    style: { animationDuration: "13s", animationDelay: "-6s" },
-  },
-  {
-    Icon: SiArgo,
-    className: "left-[30%] top-[80%] size-10 sm:size-12",
-    style: { animationDuration: "12s", animationDelay: "-2s" },
-  },
-  {
-    Icon: SiHelm,
-    className: "left-[48%] top-[58%] size-10 sm:size-14",
-    style: { animationDuration: "15s", animationDelay: "-8s" },
-  },
-  {
-    Icon: SiPrometheus,
-    className: "left-[58%] top-[10%] size-9 sm:size-12",
-    style: { animationDuration: "10s", animationDelay: "-4s" },
-  },
-  {
-    Icon: SiIstio,
-    className: "left-[70%] top-[74%] size-10 sm:size-12",
-    style: { animationDuration: "13s", animationDelay: "-9s" },
-  },
-  {
-    Icon: SiVault,
-    className: "left-[80%] top-[30%] size-9 sm:size-12",
-    style: { animationDuration: "12s", animationDelay: "-5s" },
-  },
-  {
-    Icon: SiGrafana,
-    className: "left-[90%] top-[62%] size-10 sm:size-14",
-    style: { animationDuration: "14s", animationDelay: "-7s" },
-  },
-  {
-    Icon: SiAnsible,
-    className: "left-[92%] top-[8%] size-9 sm:size-12",
-    style: { animationDuration: "11s", animationDelay: "-1s" },
-  },
-];
+// This layer is rendered inside each section's centered content box, so negative
+// left/right offsets push icons out into the side gutters (which only exist on
+// xl+ screens — the layer is hidden below that). Offsets and sizes are varied to
+// scatter icons in a loose zig-zag rather than a straight column, and must stay
+// within the ~128px xl gutter including the float animation's ±14px drift.
+// In-content positions (e.g. left-[55%]) sit over opaque cards or layout gaps,
+// never over bare text.
+const layouts: Record<string, FloatingIcon[]> = {
+  hero: [
+    { Icon: SiKubernetes, className: "-left-24 top-[8%] size-14", style: { animationDuration: "14s" } },
+    { Icon: SiDocker, className: "-left-14 top-[48%] size-11", style: { animationDuration: "11s", animationDelay: "-3s" } },
+    { Icon: SiHelm, className: "-left-21 bottom-[10%] size-9", style: { animationDuration: "15s", animationDelay: "-8s" } },
+    { Icon: SiArgo, className: "left-[55%] top-[16%] size-9", style: { animationDuration: "12s", animationDelay: "-2s" } },
+    { Icon: SiIstio, className: "-right-23 top-[14%] size-12", style: { animationDuration: "13s", animationDelay: "-9s" } },
+    { Icon: SiVault, className: "-right-12 top-[52%] size-9", style: { animationDuration: "12s", animationDelay: "-5s" } },
+    { Icon: SiGrafana, className: "-right-19 bottom-[8%] size-11", style: { animationDuration: "14s", animationDelay: "-7s" } },
+  ],
+  a: [
+    { Icon: SiDocker, className: "-left-20 top-[24%] size-12", style: { animationDuration: "12s", animationDelay: "-2s" } },
+    { Icon: SiKubernetes, className: "-left-11 bottom-[16%] size-9", style: { animationDuration: "14s", animationDelay: "-6s" } },
+    { Icon: SiArgo, className: "left-[40%] top-[52%] size-10", style: { animationDuration: "11s", animationDelay: "-4s" } },
+    { Icon: SiLinux, className: "-right-17 top-[18%] size-11", style: { animationDuration: "12s", animationDelay: "-1s" } },
+    { Icon: SiPrometheus, className: "-right-24 bottom-[26%] size-9", style: { animationDuration: "10s", animationDelay: "-8s" } },
+  ],
+  b: [
+    { Icon: SiJenkins, className: "-left-15 top-[30%] size-10", style: { animationDuration: "13s", animationDelay: "-3s" } },
+    { Icon: SiHelm, className: "-left-23 bottom-[14%] size-12", style: { animationDuration: "15s", animationDelay: "-7s" } },
+    { Icon: SiGrafana, className: "left-[50%] top-[58%] size-11", style: { animationDuration: "14s", animationDelay: "-2s" } },
+    { Icon: SiKubernetes, className: "-right-21 top-[12%] size-12", style: { animationDuration: "14s" } },
+    { Icon: SiAnsible, className: "-right-11 bottom-[22%] size-9", style: { animationDuration: "11s", animationDelay: "-6s" } },
+  ],
+  sides: [
+    { Icon: SiKubernetes, className: "-left-19 top-[10%] size-12", style: { animationDuration: "14s", animationDelay: "-2s" } },
+    { Icon: SiDocker, className: "-left-24 bottom-[12%] size-10", style: { animationDuration: "11s", animationDelay: "-4s" } },
+    { Icon: SiJenkins, className: "-right-14 top-[22%] size-10", style: { animationDuration: "13s", animationDelay: "-1s" } },
+    { Icon: SiIstio, className: "-right-22 bottom-[10%] size-12", style: { animationDuration: "13s", animationDelay: "-5s" } },
+  ],
+};
 
-export function DevopsBackground() {
+export function DevopsBackground({
+  variant = "hero",
+}: {
+  variant?: keyof typeof layouts;
+}) {
+  const icons = layouts[variant] ?? layouts.hero;
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      {floatingIcons.map(({ Icon, className, style }, index) => (
+    <div aria-hidden className="pointer-events-none absolute inset-0 hidden xl:block">
+      {icons.map(({ Icon, className, style }, index) => (
         <span
           key={index}
-          className={`absolute animate-devops-float text-primary opacity-[0.07] dark:opacity-[0.09] motion-reduce:animate-none ${className}`}
+          className={`absolute animate-devops-float text-primary opacity-[0.08] dark:opacity-10 motion-reduce:animate-none ${className}`}
           style={style}
         >
           <Icon className="size-full" />

@@ -13,7 +13,12 @@ import { projects } from "@/lib/data";
 
 export function Projects() {
   return (
-    <Section id="projects" title="cat ./projects" subtitle="things I've built and run">
+    <Section
+      id="projects"
+      title="cat ./projects"
+      subtitle="things I've built and run"
+      bgVariant="b"
+    >
       <div className="grid gap-6 lg:grid-cols-2">
         {projects.map((project) => (
           <Card

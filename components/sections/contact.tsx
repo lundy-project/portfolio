@@ -23,7 +23,12 @@ function LinkedinIcon({ className }: { className?: string }) {
 
 export function Contact() {
   return (
-    <Section id="contact" title="ping lundy" subtitle="let's build something reliable">
+    <Section
+      id="contact"
+      title="ping lundy"
+      subtitle="let's build something reliable"
+      bgVariant="b"
+    >
       <Card>
         <CardContent className="flex flex-col items-center gap-6 py-10 text-center">
           <p className="max-w-md text-muted-foreground">

@@ -7,7 +7,12 @@ import { experiences } from "@/lib/data";
 
 export function Experience() {
   return (
-    <Section id="experience" title="git log --experience" subtitle="where I've shipped">
+    <Section
+      id="experience"
+      title="git log --experience"
+      subtitle="where I've shipped"
+      bgVariant="sides"
+    >
       <div className="relative space-y-8 before:absolute before:inset-y-2 before:left-[7px] before:w-px before:bg-border sm:before:left-[9px]">
         {experiences.map((job) => (
           <div key={job.company} className="relative pl-8 sm:pl-10">

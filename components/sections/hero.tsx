@@ -15,10 +15,10 @@ const statusBadges = [
 
 export function Hero() {
   return (
-    <section id="top" className="relative border-b border-border/60">
-      <DevopsBackground />
+    <section id="top" className="border-b border-border/60">
       <div className="relative mx-auto grid max-w-5xl gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[1fr_minmax(0,420px)] lg:items-center">
-        <div className="flex flex-col items-start gap-6">
+        <DevopsBackground />
+        <div className="relative flex flex-col items-start gap-6">
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
             <ProfilePhoto />
             <div>
@@ -55,7 +55,9 @@ export function Hero() {
           </div>
         </div>
 
-        <InteractiveTerminal />
+        <div className="relative">
+          <InteractiveTerminal />
+        </div>
       </div>
     </section>
   );
