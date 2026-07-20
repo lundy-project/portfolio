@@ -1,4 +1,4 @@
-import { Globe, Mail, MapPin } from "lucide-react";
+import { Globe, Mail, MapPin, Send } from "lucide-react";
 
 import { Section } from "@/components/section";
 import { Button } from "@/components/ui/button";
@@ -34,6 +34,11 @@ export function Contact() {
             <Button asChild size="lg">
               <a href={`mailto:${profile.email}`}>
                 <Mail className="size-4" /> {profile.email}
+              </a>
+            </Button>
+            <Button variant="outline" size="lg" asChild>
+              <a href={profile.telegram} target="_blank" rel="noreferrer">
+                <Send className="size-4" /> Telegram
               </a>
             </Button>
             <Button variant="outline" size="lg" asChild>

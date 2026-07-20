@@ -22,7 +22,7 @@ export function ProfilePhoto({ className }: { className?: string }) {
         </div>
       ) : (
         <Image
-          src="/profile.jpg"
+          src="/profile/seablundy.jpg"
           alt={profile.name}
           fill
           sizes="176px"

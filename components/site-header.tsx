@@ -34,7 +34,9 @@ export function SiteHeader() {
         </nav>
         <div className="flex items-center gap-2">
           <Button size="sm" asChild className="hidden font-mono text-xs sm:inline-flex">
-            <a href={`mailto:${profile.email}`}>hire --me</a>
+            <a href={profile.telegram} target="_blank" rel="noreferrer">
+              hire --me
+            </a>
           </Button>
           <ThemeToggle />
         </div>

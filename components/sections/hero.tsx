@@ -1,4 +1,4 @@
-import { Download, Mail, MapPin } from "lucide-react";
+import { Download, MapPin, Send } from "lucide-react";
 
 import { ProfilePhoto } from "@/components/profile-photo";
 import { Badge } from "@/components/ui/badge";
@@ -45,8 +45,8 @@ export function Hero() {
           </div>
           <div className="flex flex-wrap gap-3">
             <Button asChild>
-              <a href={`mailto:${profile.email}`}>
-                <Mail className="size-4" /> Contact Me
+              <a href={profile.telegram} target="_blank" rel="noreferrer">
+                <Send className="size-4" /> Contact Me
               </a>
             </Button>
             <Button variant="outline" asChild>

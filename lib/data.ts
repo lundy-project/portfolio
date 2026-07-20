@@ -5,8 +5,9 @@ export const profile = {
   location: "Phnom Penh, Cambodia",
   email: "lundyseab@gmail.com",
   website: "https://www.lundy.work",
-  github: "https://github.com/seablundy",
-  linkedin: "https://www.linkedin.com/in/seablundy",
+  telegram: "https://t.me/seablundy",
+  github: "https://github.com/lundyseab",
+  linkedin: "https://www.linkedin.com/in/lundy-seab",
   summary:
     "DevOps Engineer with hands-on experience designing and managing Kubernetes platforms, CI/CD pipelines, infrastructure automation, and DevSecOps. Skilled in Kubernetes, Jenkins, Argo CD, Ansible, HashiCorp Vault, Linux, and cloud-native technologies, with expertise in building secure, scalable, and highly available infrastructure. Experienced in server administration, enterprise networking, and AI operation workflows. Passionate about automation, platform engineering, and delivering reliable production systems.",
 };
