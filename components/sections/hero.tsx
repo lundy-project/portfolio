@@ -1,4 +1,4 @@
-import { Download, MapPin, Send } from "lucide-react";
+import { MapPin, Send } from "lucide-react";
 
 import { ProfilePhoto } from "@/components/profile-photo";
 import { Badge } from "@/components/ui/badge";
@@ -48,13 +48,7 @@ export function Hero() {
               <a href={profile.telegram} target="_blank" rel="noreferrer">
                 <Send className="size-4" /> Contact Me
               </a>
-            </Button>
-            <Button variant="outline" asChild>
-              <a href="/cv.pdf" download="Seab-Lundy-CV.pdf">
-                <Download className="size-4" /> Download CV
-              </a>
-            </Button>
-          </div>
+            </Button>          </div>
         </div>
 
         <div className="overflow-hidden rounded-xl border border-border/60 bg-terminal shadow-xl">
