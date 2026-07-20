@@ -1,5 +1,6 @@
 import { MapPin, Send } from "lucide-react";
 
+import { DevopsBackground } from "@/components/devops-background";
 import { InteractiveTerminal } from "@/components/interactive-terminal";
 import { ProfilePhoto } from "@/components/profile-photo";
 import { Badge } from "@/components/ui/badge";
@@ -14,8 +15,9 @@ const statusBadges = [
 
 export function Hero() {
   return (
-    <section id="top" className="border-b border-border/60">
-      <div className="mx-auto grid max-w-5xl gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[1fr_minmax(0,420px)] lg:items-center">
+    <section id="top" className="relative border-b border-border/60">
+      <DevopsBackground />
+      <div className="relative mx-auto grid max-w-5xl gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[1fr_minmax(0,420px)] lg:items-center">
         <div className="flex flex-col items-start gap-6">
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
             <ProfilePhoto />
