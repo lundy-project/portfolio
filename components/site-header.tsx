@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Terminal } from "lucide-react";
 
+import { MobileNav } from "@/components/mobile-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { profile } from "@/lib/data";
@@ -39,6 +40,7 @@ export function SiteHeader() {
             </a>
           </Button>
           <ThemeToggle />
+          <MobileNav />
         </div>
       </div>
     </header>

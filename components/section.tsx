@@ -6,7 +6,7 @@ export function Section({
   title,
   subtitle,
   className,
-  bgVariant = "a",
+  bgVariant,
   children,
 }: {
   id: string;
@@ -19,7 +19,7 @@ export function Section({
   return (
     <section id={id} className={cn("scroll-mt-20 py-16 sm:py-20", className)}>
       <div className="relative mx-auto max-w-5xl px-4 sm:px-6">
-        <DevopsBackground variant={bgVariant} />
+        {bgVariant ? <DevopsBackground variant={bgVariant} /> : null}
         <div className="relative">
           <div className="mb-10">
             <h2 className="font-mono text-2xl font-bold tracking-tight sm:text-3xl">

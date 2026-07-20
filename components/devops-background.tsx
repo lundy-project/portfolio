@@ -57,6 +57,38 @@ const layouts: Record<string, FloatingIcon[]> = {
   ],
 };
 
+// Small-screen hero icons live in the section's top/bottom padding strips —
+// the only text-free zones once the gutters collapse. Kept faint and few.
+const heroMobile: FloatingIcon[] = [
+  { Icon: SiKubernetes, className: "right-2 top-2 size-10", style: { animationDuration: "14s" } },
+  { Icon: SiDocker, className: "left-2 bottom-2 size-9", style: { animationDuration: "11s", animationDelay: "-3s" } },
+  { Icon: SiJenkins, className: "right-8 bottom-1 size-8", style: { animationDuration: "13s", animationDelay: "-6s" } },
+];
+
+function IconLayer({
+  icons,
+  className,
+  opacityClass,
+}: {
+  icons: FloatingIcon[];
+  className: string;
+  opacityClass: string;
+}) {
+  return (
+    <div aria-hidden className={`pointer-events-none absolute inset-0 ${className}`}>
+      {icons.map(({ Icon, className: iconClassName, style }, index) => (
+        <span
+          key={index}
+          className={`absolute animate-devops-float text-primary motion-reduce:animate-none ${opacityClass} ${iconClassName}`}
+          style={style}
+        >
+          <Icon className="size-full" />
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export function DevopsBackground({
   variant = "hero",
 }: {
@@ -64,16 +96,19 @@ export function DevopsBackground({
 }) {
   const icons = layouts[variant] ?? layouts.hero;
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 hidden xl:block">
-      {icons.map(({ Icon, className, style }, index) => (
-        <span
-          key={index}
-          className={`absolute animate-devops-float text-primary opacity-[0.08] dark:opacity-10 motion-reduce:animate-none ${className}`}
-          style={style}
-        >
-          <Icon className="size-full" />
-        </span>
-      ))}
-    </div>
+    <>
+      <IconLayer
+        icons={icons}
+        className="hidden xl:block"
+        opacityClass="opacity-[0.08] dark:opacity-10"
+      />
+      {variant === "hero" ? (
+        <IconLayer
+          icons={heroMobile}
+          className="xl:hidden"
+          opacityClass="opacity-[0.06] dark:opacity-[0.08]"
+        />
+      ) : null}
+    </>
   );
 }
