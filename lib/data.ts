@@ -9,7 +9,7 @@ export const profile = {
   github: "https://github.com/lundyseab",
   linkedin: "https://www.linkedin.com/in/lundy-seab",
   summary:
-    "DevOps Engineer with hands-on experience designing and managing Kubernetes platforms, CI/CD pipelines, infrastructure automation, and DevSecOps. Skilled in Kubernetes, Jenkins, Argo CD, Ansible, HashiCorp Vault, Linux, and cloud-native technologies, with expertise in building secure, scalable, and highly available infrastructure. Experienced in server administration, enterprise networking, and AI operation workflows. Passionate about automation, platform engineering, and delivering reliable production systems.",
+    "DevOps Engineer with experience designing and operating Kubernetes-based platforms, CI/CD pipelines, infrastructure automation, and DevSecOps practices. Experienced in building highly available, secure, and scalable enterprise infrastructure using Kubernetes, Jenkins, Argo CD, Ansible, HashiCorp Vault, Linux, and GitOps. Strong background in automation, networking, and cloud-native technologies with experience mentoring teams and delivering production-ready solutions.",
 };
 
 export type SkillCategory = {
@@ -18,19 +18,49 @@ export type SkillCategory = {
 };
 
 export const skillCategories: SkillCategory[] = [
-  { name: "Cloud & Containers", skills: ["Kubernetes (K8s, K3s)", "Docker"] },
-  { name: "CI/CD & GitOps", skills: ["Jenkins", "GitHub Actions", "ArgoCD"] },
+  {
+    name: "Cloud & Container Platforms",
+    skills: ["Kubernetes (K8s, K3s)", "Docker", "AWS", "GCP", "DigitalOcean"],
+  },
+  {
+    name: "CI/CD & GitOps",
+    skills: ["Jenkins", "GitHub Actions", "ArgoCD", "Git"],
+  },
   {
     name: "Infrastructure & Automation",
-    skills: ["Ansible", "HashiCorp Vault", "Linux"],
+    skills: ["Ansible", "Linux Administration", "Bash", "HashiCorp Vault"],
   },
-  { name: "CNI & Service Mesh", skills: ["Cilium", "Flannel", "Istio"] },
   {
-    name: "DevSecOps",
-    skills: ["SonarQube", "Trivy", "TruffleHog", "Dependency-Check"],
+    name: "Networking & Service Mesh",
+    skills: ["Cilium", "Flannel", "Istio", "MikroTik", "UniFi", "VPN", "DNS"],
   },
-  { name: "Networking", skills: ["MikroTik", "UniFi", "VPN", "DNS"] },
-  { name: "Programming", skills: ["Python", "Java", "Bash"] },
+  {
+    name: "Security & DevSecOps",
+    skills: [
+      "SonarQube",
+      "Trivy",
+      "TruffleHog",
+      "OWASP Dependency-Check",
+      "Keycloak",
+      "SSL/TLS",
+    ],
+  },
+  {
+    name: "Monitoring & Logging",
+    skills: ["Prometheus", "Grafana", "ELK Stack"],
+  },
+  {
+    name: "Application Technologies",
+    skills: [
+      "Python",
+      "Java",
+      "Spring Boot",
+      "REST APIs",
+      "PostgreSQL",
+      "Redis",
+      "MinIO",
+    ],
+  },
 ];
 
 export type Role = {
@@ -134,6 +164,28 @@ export const projects: Project[] = [
       "Configured Istio Ambient Mesh for secure service-to-service communication, traffic management, and mutual TLS without traditional sidecar proxies.",
       "Implemented monitoring with Prometheus, Grafana, and the ELK Stack.",
       "Applied DevOps and DevSecOps practices to improve infrastructure automation, security, scalability, and operational reliability.",
+    ],
+  },
+  {
+    name: "Enterprise Online Examination Platform",
+    org: "Korea Software HRD Center",
+    year: "2024",
+    featured: true,
+    stack: [
+      "Spring Boot",
+      "PostgreSQL",
+      "Redis",
+      "MinIO",
+      "Keycloak",
+      "Docker",
+      "Jenkins",
+      "ArgoCD",
+    ],
+    bullets: [
+      "Designed and deployed an online examination platform using Spring Boot, PostgreSQL, Redis, and MinIO following a modular RESTful architecture.",
+      "Containerized the application using Docker and automated deployment with Jenkins, Kubernetes, and Argo CD through a GitOps workflow.",
+      "Implemented Keycloak-based Single Sign-On (SSO), Spring Security, Redis session management, and object storage integration with MinIO for secure file management.",
+      "Built scalable infrastructure supporting automated application deployment and TLS provisioning.",
     ],
   },
   {
