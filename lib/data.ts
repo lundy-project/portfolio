@@ -1,7 +1,7 @@
 export const profile = {
   name: "Seab Lundy",
   initials: "SL",
-  title: "DevOps Engineer",
+  title: "Senior DevOps Engineer",
   location: "Phnom Penh, Cambodia",
   email: "lundyseab@gmail.com",
   website: "https://www.lundy.work",
@@ -9,7 +9,7 @@ export const profile = {
   github: "https://github.com/lundyseab",
   linkedin: "https://www.linkedin.com/in/lundy-seab",
   summary:
-    "DevOps Engineer with experience designing and operating Kubernetes-based platforms, CI/CD pipelines, infrastructure automation, and DevSecOps practices. Experienced in building highly available, secure, and scalable enterprise infrastructure using Kubernetes, Jenkins, Argo CD, Ansible, HashiCorp Vault, Linux, and GitOps. Strong background in automation, networking, and cloud-native technologies with experience mentoring teams and delivering production-ready solutions.",
+    "Senior DevOps Engineer (2+ years) with DevSecOps knowledge and experience designing and operating Kubernetes-based platforms, CI/CD pipelines, and secure cloud-native environments. Working according to organizational policies, standards, and procedures, committed to long-term growth while delivering reliable and scalable enterprise infrastructure. Skilled in Kubernetes, Jenkins, Argo CD, Ansible, HashiCorp Vault, and GitOps, with a strong background in automation, networking, and mentoring teams to deliver production-ready solutions.",
 };
 
 export type SkillCategory = {
@@ -20,11 +20,11 @@ export type SkillCategory = {
 export const skillCategories: SkillCategory[] = [
   {
     name: "Cloud & Container Platforms",
-    skills: ["Kubernetes (K8s, K3s)", "Docker", "AWS", "GCP", "DigitalOcean"],
+    skills: ["Kubernetes (K8s)", "Docker", "AWS", "GCP", "DigitalOcean"],
   },
   {
     name: "CI/CD & GitOps",
-    skills: ["Jenkins", "GitHub Actions", "ArgoCD", "Git"],
+    skills: ["Jenkins", "GitHub Actions", "Argo CD", "Git"],
   },
   {
     name: "Infrastructure & Automation",
@@ -42,6 +42,7 @@ export const skillCategories: SkillCategory[] = [
       "TruffleHog",
       "OWASP Dependency-Check",
       "Keycloak",
+      "PKI",
       "SSL/TLS",
     ],
   },
@@ -54,11 +55,12 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       "Python",
       "Java",
-      "Spring Boot",
-      "REST APIs",
+      "Bash",
       "PostgreSQL",
       "Redis",
       "MinIO",
+      "Spring Boot",
+      "REST APIs",
     ],
   },
 ];
@@ -82,28 +84,27 @@ export const experiences: Experience[] = [
   {
     company: "Korea Software HRD Center",
     location: "Phnom Penh",
-    position: "Instructor, Server & Network Admin",
+    position: "DevOps Engineer, Instructor & Network Admin",
     type: "Full Time",
     period: "2024 — Present",
     roles: [
+      {
+        title: "DevOps Engineer & Network Administration",
+        period: "Jul 2024 — Present",
+        bullets: [
+          "Design CI/CD and maintained production services supporting both administrative and technical departments.",
+          "Designed and managed KSHRD's enterprise network using MikroTik routers and UniFi access points.",
+          "Administered Linux servers hosting websites, internal services, VPNs, and Network File System (NFS).",
+          "Maintained infrastructure reliability, and service availability across the organization.",
+        ],
+      },
       {
         title: "DevOps Instructor · Automated PaaS Project",
         period: "2024",
         bullets: [
           "Led the development of a Kubernetes-based Platform-as-a-Service (PaaS), achieving Top 3 Project recognition.",
-          "Designed CI/CD pipelines from git repo link upload to production-ready, using Jenkins, Kubernetes, and ArgoCD to automate application deployment.",
-          "Automated SSL/TLS certificate provisioning, domain configuration, and Kubernetes application deployment.",
-          "Mentored the project in collaboration with a local banking partner, guiding students through DevOps best practices.",
-        ],
-      },
-      {
-        title: "Servers & Network Administration",
-        period: "Jul 2024 — Present",
-        bullets: [
-          "Designed and managed KSHRD's enterprise network using MikroTik routers and UniFi access points.",
-          "Administered Linux servers hosting websites, internal services, VPNs, and Network File System (NFS).",
-          "Maintained infrastructure reliability, system security, and service availability across the organization.",
-          "Deployed and maintained production services supporting both administrative and technical departments.",
+          "Designed and implemented CI/CD pipelines using Jenkins, Kubernetes, and Argo CD, automating application delivery from source-code repositories to production environments. Automated PKI, SSL/TLS certificate provisioning, domain configuration, and Kubernetes application deployment.",
+          "Mentored students on the project in collaboration with a local banking partner, guiding them in Kubernetes, CI/CD, GitOps, and DevOps best practices.",
         ],
       },
       {
@@ -128,7 +129,7 @@ export const experiences: Experience[] = [
         title: "IT Support",
         period: "Nov 2023 — Mar 2024",
         bullets: [
-          "Responsible for setting up computer operating systems, networks, and software installation.",
+          "Responsible for setup computer operating system, network, and application installation.",
         ],
       },
     ],
@@ -146,12 +147,12 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    name: "Kubernetes AI Cluster (K3s)",
+    name: "AI on Kubernetes Cluster",
     org: "Korea Software HRD Center",
     year: "2026",
     featured: true,
     stack: [
-      "K3s",
+      "Kubernetes",
       "Cilium",
       "Istio Ambient Mesh",
       "Prometheus",
@@ -159,15 +160,15 @@ export const projects: Project[] = [
       "ELK Stack",
     ],
     bullets: [
-      "Designed and deployed a lightweight Kubernetes cluster using K3s to support AI workloads, internal services, and cloud-native applications.",
+      "Designed and deployed a lightweight Kubernetes cluster to support AI workloads, internal services, and cloud-native applications.",
       "Implemented Cilium CNI for container networking.",
-      "Configured Istio Ambient Mesh for secure service-to-service communication, traffic management, and mutual TLS without traditional sidecar proxies.",
-      "Implemented monitoring with Prometheus, Grafana, and the ELK Stack.",
+      "Configured Istio Ambient Mesh to provide secure service-to-service communication, traffic management, and mutual TLS without traditional sidecar proxies.",
+      "Implemented observability with Prometheus, Grafana, and ELK Stack.",
       "Applied DevOps and DevSecOps practices to improve infrastructure automation, security, scalability, and operational reliability.",
     ],
   },
   {
-    name: "Enterprise Online Examination Platform",
+    name: "Enterprise Online Examination Platform (Spring Boot)",
     org: "Korea Software HRD Center",
     year: "2024",
     featured: true,
@@ -179,13 +180,13 @@ export const projects: Project[] = [
       "Keycloak",
       "Docker",
       "Jenkins",
-      "ArgoCD",
+      "Argo CD",
     ],
     bullets: [
       "Designed and deployed an online examination platform using Spring Boot, PostgreSQL, Redis, and MinIO following a modular RESTful architecture.",
       "Containerized the application using Docker and automated deployment with Jenkins, Kubernetes, and Argo CD through a GitOps workflow.",
       "Implemented Keycloak-based Single Sign-On (SSO), Spring Security, Redis session management, and object storage integration with MinIO for secure file management.",
-      "Built scalable infrastructure supporting automated application deployment and TLS provisioning.",
+      "Built scalable infrastructure supporting automated application deployment, and SSL/TLS provisioning.",
     ],
   },
   {
@@ -193,11 +194,11 @@ export const projects: Project[] = [
     org: "Korea Software HRD Center",
     year: "2024",
     featured: false,
-    stack: ["Kubernetes", "Jenkins", "ArgoCD", "cert-manager"],
+    stack: ["Kubernetes", "Jenkins", "Argo CD", "PKI", "cert-manager"],
     bullets: [
-      "Kubernetes-based Platform-as-a-Service that turns a git repository link into a production-ready deployment — Top 3 Project recognition.",
-      "End-to-end CI/CD pipeline with Jenkins and GitOps delivery via ArgoCD.",
-      "Automated SSL/TLS certificate provisioning and domain configuration.",
+      "Kubernetes-based Platform-as-a-Service that automates application delivery from source-code repositories to production environments — Top 3 Project recognition.",
+      "CI/CD pipelines built with Jenkins, Kubernetes, and Argo CD.",
+      "Automated PKI, SSL/TLS certificate provisioning, domain configuration, and Kubernetes application deployment.",
       "Built in collaboration with a local banking partner.",
     ],
   },

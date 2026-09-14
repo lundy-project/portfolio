@@ -16,7 +16,7 @@ type HistoryEntry = {
   output: React.ReactNode;
 };
 
-const PROMPT = "lundy@k3s-cluster:~$";
+const PROMPT = "lundy@k8s-cluster:~$";
 
 function Muted({ children }: { children: React.ReactNode }) {
   return <span className="text-white/80">{children}</span>;
@@ -32,7 +32,7 @@ const bootOutput = (
     <p className="text-white/80">kind: DevOpsEngineer</p>
     <p className="text-white/80">spec:</p>
     <p className="pl-4 text-white/80">
-      platform: <span className="text-terminal-foreground">[k8s, k3s, docker]</span>
+      platform: <span className="text-terminal-foreground">[k8s, docker]</span>
     </p>
     <p className="pl-4 text-white/80">
       cicd: <span className="text-terminal-foreground">[jenkins, argocd, github-actions]</span>
@@ -283,7 +283,7 @@ export function InteractiveTerminal() {
         <span className="size-3 rounded-full bg-[#febc2e]" />
         <span className="size-3 rounded-full bg-[#28c840]" />
         <span className="ml-2 font-mono text-xs text-white/50">
-          lundy@k3s-cluster: ~ — interactive
+          lundy@k8s-cluster: ~ — interactive
         </span>
       </div>
       <div
