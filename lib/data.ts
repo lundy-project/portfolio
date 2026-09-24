@@ -1,15 +1,15 @@
 export const profile = {
   name: "Seab Lundy",
   initials: "SL",
-  title: "Senior DevOps Engineer",
+  title: "DevOps Engineer",
   location: "Phnom Penh, Cambodia",
-  email: "lundyseab@gmail.com",
+  email: "seablundy@gmail.com",
   website: "https://www.lundy.work",
   telegram: "https://t.me/seablundy",
   github: "https://github.com/lundyseab",
   linkedin: "https://www.linkedin.com/in/lundy-seab",
   summary:
-    "Senior DevOps Engineer (2+ years) with DevSecOps knowledge and experience designing and operating Kubernetes-based platforms, CI/CD pipelines, and secure cloud-native environments. Working according to organizational policies, standards, and procedures, committed to long-term growth while delivering reliable and scalable enterprise infrastructure. Skilled in Kubernetes, Jenkins, Argo CD, Ansible, HashiCorp Vault, and GitOps, with a strong background in automation, networking, and mentoring teams to deliver production-ready solutions.",
+    "DevOps Engineer (2+ years) with DevSecOps knowledge and experience designing and operating Kubernetes-based platforms, CI/CD pipelines, and secure cloud-native environments. Working according to organizational policies, standards, and procedures, committed to long-term growth while delivering reliable and scalable enterprise infrastructure. Skilled in Kubernetes, Jenkins, Argo CD, Ansible, HashiCorp Vault, and GitOps, with a strong background in automation, networking, and mentoring teams to deliver production-ready solutions.",
 };
 
 export type SkillCategory = {
@@ -32,14 +32,15 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     name: "Networking & Service Mesh",
-    skills: ["Cilium", "Flannel", "Istio", "MikroTik", "UniFi", "VPN", "DNS"],
+    skills: ["Cilium", "Istio Service Mesh", "MikroTik", "UniFi", "VPN", "DNS"],
   },
   {
     name: "Security & DevSecOps",
     skills: [
       "SonarQube",
       "Trivy",
-      "TruffleHog",
+      "Gitleaks",
+      "JFrog",
       "OWASP Dependency-Check",
       "Keycloak",
       "PKI",
@@ -53,8 +54,8 @@ export const skillCategories: SkillCategory[] = [
   {
     name: "Application Technologies",
     skills: [
-      "Python",
       "Java",
+      "Python",
       "Bash",
       "PostgreSQL",
       "Redis",
@@ -86,16 +87,16 @@ export const experiences: Experience[] = [
     location: "Phnom Penh",
     position: "DevOps Engineer, Instructor & Network Admin",
     type: "Full Time",
-    period: "2024 — Present",
+    period: "2024 — 2026",
     roles: [
       {
         title: "DevOps Engineer & Network Administration",
-        period: "Jul 2024 — Present",
+        period: "Jan 2024 — Jul 2026",
         bullets: [
           "Design CI/CD and maintained production services supporting both administrative and technical departments.",
           "Designed and managed KSHRD's enterprise network using MikroTik routers and UniFi access points.",
           "Administered Linux servers hosting websites, internal services, VPNs, and Network File System (NFS).",
-          "Maintained infrastructure reliability, and service availability across the organization.",
+          "Maintained infrastructure High Availability (HA), and reliability across the organization.",
         ],
       },
       {
@@ -104,7 +105,7 @@ export const experiences: Experience[] = [
         bullets: [
           "Led the development of a Kubernetes-based Platform-as-a-Service (PaaS), achieving Top 3 Project recognition.",
           "Designed and implemented CI/CD pipelines using Jenkins, Kubernetes, and Argo CD, automating application delivery from source-code repositories to production environments. Automated PKI, SSL/TLS certificate provisioning, domain configuration, and Kubernetes application deployment.",
-          "Mentored students on the project in collaboration with a local banking partner, guiding them in Kubernetes, CI/CD, GitOps, and DevOps best practices.",
+          "Mentored students in collaboration with a local banking partner, guiding them in Kubernetes, CI/CD, and GitOps workflow.",
         ],
       },
       {
@@ -122,7 +123,7 @@ export const experiences: Experience[] = [
     company: "The University of Cambodia",
     location: "Phnom Penh",
     position: "IT Support",
-    type: "Part-Time",
+    type: "Internship",
     period: "Nov 2023 — Mar 2024",
     roles: [
       {
@@ -151,24 +152,17 @@ export const projects: Project[] = [
     org: "Korea Software HRD Center",
     year: "2026",
     featured: true,
-    stack: [
-      "Kubernetes",
-      "Cilium",
-      "Istio Ambient Mesh",
-      "Prometheus",
-      "Grafana",
-      "ELK Stack",
-    ],
+    stack: ["Kubernetes", "Cilium", "Istio Service Mesh", "Prometheus", "Grafana"],
     bullets: [
       "Designed and deployed a lightweight Kubernetes cluster to support AI workloads, internal services, and cloud-native applications.",
       "Implemented Cilium CNI for container networking.",
-      "Configured Istio Ambient Mesh to provide secure service-to-service communication, traffic management, and mutual TLS without traditional sidecar proxies.",
-      "Implemented observability with Prometheus, Grafana, and ELK Stack.",
+      "Configured Istio Service Mesh to provide secure service-to-service communication, traffic management, and mutual TLS.",
+      "Implemented monitoring with Prometheus, and Grafana.",
       "Applied DevOps and DevSecOps practices to improve infrastructure automation, security, scalability, and operational reliability.",
     ],
   },
   {
-    name: "Enterprise Online Examination Platform (Spring Boot)",
+    name: "Online Examination Platform (Spring Boot)",
     org: "Korea Software HRD Center",
     year: "2024",
     featured: true,
@@ -179,14 +173,13 @@ export const projects: Project[] = [
       "MinIO",
       "Keycloak",
       "Docker",
-      "Jenkins",
-      "Argo CD",
+      "CI/CD",
     ],
     bullets: [
       "Designed and deployed an online examination platform using Spring Boot, PostgreSQL, Redis, and MinIO following a modular RESTful architecture.",
-      "Containerized the application using Docker and automated deployment with Jenkins, Kubernetes, and Argo CD through a GitOps workflow.",
+      "Containerized the application using Docker and automated deployment through CI/CD pipeline.",
       "Implemented Keycloak-based Single Sign-On (SSO), Spring Security, Redis session management, and object storage integration with MinIO for secure file management.",
-      "Built scalable infrastructure supporting automated application deployment, and SSL/TLS provisioning.",
+      "Emulated Spring Boot Code Executor using containerized code execution.",
     ],
   },
   {
@@ -206,7 +199,7 @@ export const projects: Project[] = [
 
 export const education = [
   {
-    degree: "Bachelor of Information Technology",
+    degree: "Bachelor of Information Technology (IT)",
     school: "CoST | The University of Cambodia",
     period: "2020 — 2023",
     detail: "GPA: 3.51 / 4.0",

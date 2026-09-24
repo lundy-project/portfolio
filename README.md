@@ -1,8 +1,8 @@
 # lundy.work — DevOps Portfolio
 
-Personal portfolio of **Seab Lundy**, Senior DevOps Engineer in Phnom Penh, Cambodia. A single-page, DevOps-themed site with an interactive terminal, light/dark mode, and content driven entirely from one data file.
+Personal portfolio of **Seab Lundy**, DevOps Engineer in Phnom Penh, Cambodia. A single-page, DevOps-themed site with an interactive terminal, light/dark mode, and content driven entirely from one data file.
 
-**Live:** [www.lundy.work](https://www.lundy.work) · **Contact:** [Telegram](https://t.me/seablundy) · [lundyseab@gmail.com](mailto:lundyseab@gmail.com)
+**Live:** [www.lundy.work](https://www.lundy.work) · **Contact:** [Telegram](https://t.me/seablundy) · [seablundy@gmail.com](mailto:seablundy@gmail.com)
 
 ## Features
 

@@ -16,11 +16,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.lundy.work"),
-  title: "Seab Lundy — Senior DevOps Engineer",
+  title: "Seab Lundy — DevOps Engineer",
   description:
-    "Senior DevOps Engineer in Phnom Penh specializing in Kubernetes platforms, CI/CD pipelines, GitOps, infrastructure automation, and DevSecOps.",
+    "DevOps Engineer in Phnom Penh specializing in Kubernetes platforms, CI/CD pipelines, GitOps, infrastructure automation, and DevSecOps.",
   openGraph: {
-    title: "Seab Lundy — Senior DevOps Engineer",
+    title: "Seab Lundy — DevOps Engineer",
     description:
       "Kubernetes, CI/CD, GitOps, infrastructure automation, and DevSecOps.",
     url: "https://www.lundy.work",
